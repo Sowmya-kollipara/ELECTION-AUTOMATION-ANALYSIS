@@ -1,0 +1,26 @@
+import matplotlib.pyplot as plt
+
+plt.hist(data['Ballot ID'], bins=20, color='skyblue', edgecolor='black')
+plt.xlabel('Ballot ID')
+plt.ylabel('Frequency')
+plt.title('Distribution of Ballot IDs')
+plt.show()
+
+
+# Bar chart for County
+county_counts = data['County'].value_counts()
+plt.bar(county_counts.index, county_counts.values, color='lightgreen')
+plt.xlabel('County')
+plt.ylabel('Frequency')
+plt.title('Frequency of Votes by County')
+plt.xticks(rotation=45, ha='right')
+plt.show()
+
+# Bar chart for Candidate
+candidate_counts = data['Candidate'].value_counts()
+plt.bar(candidate_counts.index, candidate_counts.values, color='lightcoral')
+plt.xlabel('Candidate')
+plt.ylabel('Frequency')
+plt.title('Frequency of Votes by Candidate')
+plt.xticks(rotation=45, ha='right')
+plt.show()
