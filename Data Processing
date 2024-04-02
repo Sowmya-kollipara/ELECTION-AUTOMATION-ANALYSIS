@@ -1,0 +1,54 @@
+import pandas as pd
+
+data = pd.read_csv('/content/election_results.csv')
+
+# Remove duplicates based on all columns
+data_no_duplicates = data.drop_duplicates()
+
+# Print the DataFrame without duplicates
+print("DataFrame without duplicates:")
+print(data_no_duplicates)
+
+
+import numpy as np
+
+# Checking for missing values
+missing_values = data.isnull().sum()
+print("Missing values by columns:\n", missing_values)
+
+# Removing rows with missing values
+data_cleaned = data.dropna()
+
+# Filling missing values with a constant
+data_filled_constant = data.fillna(value=0)
+
+# Filling missing values with the mean of the column
+data_filled_mean = data.fillna(data.mean(numeric_only=True))
+
+# Filling missing values with the median of the column
+data_filled_median = data.fillna(data.median(numeric_only=True))
+
+# Filling missing values with the mode of the column
+data_filled_mode = data.fillna(data.mode().iloc[0])
+
+# Using forward-fill method to fill missing values
+data_filled_ffill = data.fillna(method='ffill')
+
+# Using backward-fill method to fill missing values
+data_filled_bfill = data.fillna(method='bfill')
+
+# Interpolating missing values
+data_filled_interpolate = data.interpolate()
+
+# Choose the appropriate method to handle missing values based on your specific dataset and save it as 'data_preprocessed'
+data_preprocessed = data_filled_mean
+
+
+# Group the DataFrame by candidate names
+grouped_candidates = data.groupby('Candidate')
+
+# Iterate over the groups and perform operations if needed
+for candidate, group in grouped_candidates:
+    print(candidate)
+    print(group)
+
